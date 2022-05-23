@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abc.MvcWebUI.entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,14 @@ namespace Abc.MvcWebUI.Controllers
 {
     public class HomeController : Controller
     {
+
+        DataContext context = new DataContext();
+
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            
+            return View(context.Products.ToList());
         }
         public ActionResult Details()
         {

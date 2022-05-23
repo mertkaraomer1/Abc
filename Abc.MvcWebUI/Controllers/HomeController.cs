@@ -16,15 +16,15 @@ namespace Abc.MvcWebUI.Controllers
         public ActionResult Index()
         {
             
-            return View(context.Products.ToList());
+            return View(context.Products.Where(i=>i.IsHome&&i.IsApproved).ToList());
         }
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            return View();
+            return View(context.Products.Where(i => i.Id==id).FirstOrDefault());
         }
         public ActionResult List()
         {
-            return View();
+            return View(context.Products.Where(i=> i.IsApproved).ToList());
         }
     }
 }

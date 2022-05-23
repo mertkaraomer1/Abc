@@ -1,4 +1,8 @@
-﻿
+﻿@using Abc.MvcWebUI.entity;
+@model product
+@{
+    ViewBag.Title = "Index";
+}
 @{
     ViewBag.Title = "Details";
 }
@@ -11,7 +15,7 @@
     <div class="col-md-6">
         <div class="row mt-1">
             <div clas="col-md-12">
-                <h1>kodak kamera a2343535</h1>
+                <h1>@Model.Name</h1>
             </div>
         </div>
         <div class="row mt-1">
@@ -23,7 +27,7 @@
         <div class="row mt-1">
             <div clas="col-md-12">
                 <div id="description">
-                    kamera çok kullanışlı ve en net çekimlidier.
+                    @Model.Description
                 </div>
 
             </div>
@@ -40,7 +44,7 @@
 
             </div>
             <div class="cl-md-12">
-                <h4 id="product-price">$120</h4>
+                <h4 id="product-price">@Model.Price TL</h4>
             </div>
             <div class="cl-md-12">
                 <button class="btn btn-success">add to card</button>

@@ -1,5 +1,5 @@
-﻿@using Abc.MvcWebUI.entity;
-@model IEnumerable<product>
+﻿@using Abc.MvcWebUI.Models;
+@model IEnumerable<ProductModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -10,40 +10,22 @@
 <div class="row">
 
     <div class="col-md-3">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                The current link item
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-            <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-            <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-            <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
-        </div>
+      @Html.Action("GetCategories","Home")
     </div>
     <div class="col-md-9">
-        <div class="row">
-
-            @foreach (var urun in Model)
-            {
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="holder.js/100px160/" class="card-img-top" alt="@urun.Name">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="/Home/Details/@urun.Id"> @urun.Name</a>
-                            </h5>
-                            <p class="card-text">@urun.Description</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">@urun.Price</small>
-                        </div>
-                    </div>
-                </div>
-            }
-
-
-
-        </div>
+        @if (Model.Count() == 0)
+        {
+            <div class="alert alert-danger" role="alert">
+                Bu kategoride ürün bulunamadı.
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong> @Model.Count() adet </strong>  ürün bulundu.
+            </div>
+        }
+        @Html.Partial("_ProductList", Model)
     </div>
 </div>
 

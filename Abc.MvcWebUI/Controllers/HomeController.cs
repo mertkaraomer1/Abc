@@ -1,4 +1,5 @@
 ﻿using Abc.MvcWebUI.entity;
+using Abc.MvcWebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,48 @@ namespace Abc.MvcWebUI.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
-            return View(context.Products.Where(i=>i.IsHome&&i.IsApproved).ToList());
+            var urunler = context.Products.Where(i => i.IsHome && i.IsApproved)
+                .Select(i => new ProductModel()
+            {
+                    Id=i.Id,
+                    Name=i.Name,
+                    Description =i.Description.Length>50?i.Description.Substring(0,47)+"...":i.Description,
+                    Price =i.Price,
+                    Image=i.Image,
+                    CategoryId=i.CategoryId
+
+                
+            }).ToList();
+            return View(urunler);
         }
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id )
         {
-            return View(context.Products.Where(i => i.Id==id).FirstOrDefault());
+            return View(context.Products.Where(i => i.Id==id ).FirstOrDefault());
         }
-        public ActionResult List()
+        public ActionResult List(int? id)
         {
-            return View(context.Products.Where(i=> i.IsApproved).ToList());
+            var urunler = context.Products.Where(i=>i.IsApproved)
+               .Select(i => new ProductModel()
+               {
+                   Id = i.Id ,
+                   Name = i.Name,
+                   Description = i.Description.Length > 50 ? i.Description.Substring(0, 47) + "..." : i.Description,
+                   Price = i.Price,
+                   Image = i.Image ?? "2.jpg",
+                   CategoryId = i.CategoryId
+
+
+               }).AsQueryable();
+            if(id!=null)
+            {
+                urunler = urunler.Where(i => i.CategoryId == id);
+
+            }
+            return View(urunler.ToList());
+        }
+        public PartialViewResult GetCategories()
+        {
+            return PartialView(context.Categories.ToList());
         }
     }
 }

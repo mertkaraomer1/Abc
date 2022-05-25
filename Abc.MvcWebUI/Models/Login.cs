@@ -16,7 +16,7 @@ namespace Abc.MvcWebUI.Models
         [DisplayName("Şifre")]
         public string Password { get; set; }
         
-        [DisplayName("BEni Hatırla")]
-        public string RememberMe { get; set; }
+        [DisplayName("Beni Hatırla")]
+        public bool RememberMe { get; set; }
     }
 }

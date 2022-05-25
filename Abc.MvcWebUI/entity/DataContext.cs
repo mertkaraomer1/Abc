@@ -10,7 +10,7 @@ namespace Abc.MvcWebUI.entity
     {
         public DataContext():base("dataConnection")
         {
-            Database.SetInitializer(new DataInitializer());
+            
         }
         public DbSet<product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

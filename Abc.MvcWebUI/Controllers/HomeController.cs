@@ -26,8 +26,8 @@ namespace Abc.MvcWebUI.Controllers
                     Image=i.Image,
                     CategoryId=i.CategoryId
 
-                
-            }).ToList();
+
+                }).ToList();
             return View(urunler);
         }
         public ActionResult Details(int? id )
@@ -36,18 +36,18 @@ namespace Abc.MvcWebUI.Controllers
         }
         public ActionResult List(int? id)
         {
-            var urunler = context.Products.Where(i=>i.IsApproved)
+            var urunler = context.Products.Where(i => i.IsApproved)
                .Select(i => new ProductModel()
                {
-                   Id = i.Id ,
+                   Id = i.Id,
                    Name = i.Name,
                    Description = i.Description.Length > 50 ? i.Description.Substring(0, 47) + "..." : i.Description,
                    Price = i.Price,
-                   Image = i.Image ?? "2.jpg",
+                   Image = i.Image ?? "4.jpg",
                    CategoryId = i.CategoryId
 
 
-               }).AsQueryable();
+               });
             if(id!=null)
             {
                 urunler = urunler.Where(i => i.CategoryId == id);

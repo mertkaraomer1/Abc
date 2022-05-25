@@ -1,0 +1,26 @@
+﻿@using Abc.MvcWebUI.Models
+@model Abc.MvcWebUI.Models.Cart
+<ul class="navbar-nav my-2 my-lg-0">
+
+    <style>
+        #cart {
+            color: white;
+        }
+    </style>
+
+
+
+    <li id="cart" class="nav-item">
+        <i class="bi bi-cart4"></i>
+        <a class="nav-link" href="Cart">
+        <i class="bi bi-credit-card">
+            (@Model.CartLines.Count)</i></a>
+        
+    </li>
+
+
+
+
+
+</ul>
+

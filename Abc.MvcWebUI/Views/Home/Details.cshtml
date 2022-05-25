@@ -1,9 +1,6 @@
 ﻿@using Abc.MvcWebUI.entity;
 @model product
 @{
-    ViewBag.Title = "Index";
-}
-@{
     ViewBag.Title = "Details";
 }
 <div id="product-details" class="container pb-5">
@@ -42,12 +39,12 @@
                 </div>
                 <div class="row mt-1">
                     <div class="col-md-3">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <span id="number" class="badge-success">53</span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                        <span id="number" class="badge-success">4,3</span>
                     </div>
                     <div id="write-review" class="col-md-4">write a review</div>
 
@@ -56,7 +53,15 @@
                     <h4 id="product-price">@Model.Price TL</h4>
                 </div>
                 <div class="cl-md-12">
-                    <button class="btn btn-success">add to card</button>
+
+                    @using (Html.BeginForm("AddToCart","Cart"))
+                    {
+                        @Html.HiddenFor(i=>i.Id)
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-cart4"></i>
+                        add to card
+                    </button>
+                    }
                 </div>
             </div>
 

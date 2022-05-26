@@ -1,18 +1,29 @@
 ﻿@model Abc.MvcWebUI.entity.Category
-
+@using Abc.MvcWebUI.entity
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
+    DataContext db = new DataContext();
+    var list = db.Products.ToList();
+    var test = TempData["category"] as Category;
+    var test2 = (Category)TempData["category"];
+    double d = 3.5;
+    int a = (int)d;
 }
 <div class="container pb-5">
     <h2>Yeni Kategori</h2>
     <hr/>
 
+    @foreach (var item in list)
+    {
+
+    }
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
+        <p>@TempData["message"]</p>
+        <p>@ViewBag.Message</p>
         <div class="form-horizontal">
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })

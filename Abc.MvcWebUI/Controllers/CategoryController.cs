@@ -49,6 +49,13 @@ namespace Abc.MvcWebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Description")] Category category)
         {
+            if(category.Name.Length>10)
+            {
+                TempData["message"] = "Hatalı giriş";
+                TempData["category"] = category;
+                ViewBag.Message = "Hatalı Giriş";
+                return View(category);
+            }
             if (ModelState.IsValid)
             {
                 db.Categories.Add(category);

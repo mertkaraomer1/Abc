@@ -86,7 +86,8 @@ namespace Abc.MvcWebUI.Controllers
             order.OrderNumber = "A"+(new Random()).Next(111111, 999999).ToString();
             order.Total = cart.total();
             order.OrderDate = DateTime.Now;
-            order.UserName = entity.UserName;
+            order.OrderState = EnumOrderState.Witing;
+            order.UserName = User.Identity.Name;
             order.AdresBasligi = entity.AdresBasligi;
             order.Adres = entity.Adres;
             order.Sehir = entity.Sehir;

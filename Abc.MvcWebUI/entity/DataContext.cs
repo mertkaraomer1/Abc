@@ -14,7 +14,7 @@ namespace Abc.MvcWebUI.entity
         }
         public DbSet<product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Category> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
 
     }

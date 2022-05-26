@@ -2,7 +2,9 @@
 using Abc.MvcWebUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,7 +16,7 @@ namespace Abc.MvcWebUI.Controllers
         DataContext context = new DataContext();
 
         // GET: Home
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var urunler = context.Products.Where(i => i.IsHome && i.IsApproved)
                 .Select(i => new ProductModel()
@@ -25,18 +27,21 @@ namespace Abc.MvcWebUI.Controllers
                     Price =i.Price,
                     Image=i.Image,
                     CategoryId=i.CategoryId
-
+                    
 
                 }).ToList();
+
+            
             return View(urunler);
         }
+       
         public ActionResult Details(int? id )
         {
             return View(context.Products.Where(i => i.Id==id ).FirstOrDefault());
         }
         public ActionResult List(int? id)
         {
-            var urunler = context.Products.Where(i => i.IsApproved)
+            var urunler = context.Products.Where(i => i.IsApproved )
                .Select(i => new ProductModel()
                {
                    Id = i.Id,
@@ -47,17 +52,21 @@ namespace Abc.MvcWebUI.Controllers
                    CategoryId = i.CategoryId
 
 
-               });
-            if(id!=null)
-            {
-                urunler = urunler.Where(i => i.CategoryId == id);
+               }).ToList();
+            //Helper.SetImageUrl(urunler);
+            //urunler.ForEach(f => f.SetImageUrl());
+            //urunler.FirstOrDefault().ImageWithBaseUrl;
+            //if (id!=null)
+            //{
+            //    urunler = urunler.Where(i => i.CategoryId == id);
 
-            }
+            //}
             return View(urunler.ToList());
         }
         public PartialViewResult GetCategories()
         {
             return PartialView(context.Categories.ToList());
         }
+       
     }
 }

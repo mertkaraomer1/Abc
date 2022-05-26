@@ -13,7 +13,7 @@ namespace Abc.MvcWebUI.Identity
         {
 
         }
-        public AplicationRole(string rolename,string description)
+        public AplicationRole(string rolname,string description)
         {
             this.Description = description;
         }

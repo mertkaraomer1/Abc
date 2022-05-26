@@ -18,7 +18,7 @@ namespace Abc.MvcWebUI.Identity
             {
                 var store = new RoleStore<AplicationRole>(context);
                 var manager = new RoleManager<AplicationRole>(store);
-                var role = new AplicationRole() { Name = "Admin", Description = "yönetici rolü" };
+                var role = new AplicationRole{ Name = "Admin", Description = "yönetici rolü" };
                 manager.Create(role);
 
             }
@@ -28,7 +28,7 @@ namespace Abc.MvcWebUI.Identity
             {
                 var store = new RoleStore<AplicationRole>(context);
                 var manager = new RoleManager<AplicationRole>(store);
-                var role = new AplicationRole() {Name="user",Description= "user rolü" };
+                var role = new AplicationRole {Name="user",Description= "user rolü" };
                 manager.Create(role);
 
             }
@@ -49,7 +49,6 @@ namespace Abc.MvcWebUI.Identity
                 var manager = new UserManager<AplicationUser>(store);
                 var user = new AplicationUser() { Name = "asrın", Surname = "karaomer", UserName = "asrınkaraomer", Email = "a.karaomer41@gmail.com" };
                 manager.Create(user, "123456");
-                manager.AddToRole(user.Id, "Admin");
                 manager.AddToRole(user.Id, "user");
 
 
